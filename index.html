@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="myreset.css" />
+    <link rel="stylesheet" href="index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div id="infoModal">
+      <div id="closeModal">
+        <i class="fa-regular fa-circle-xmark" style="font-size: 40px"></i>
+      </div>
+      <div class="infoModalTop">
+        <div class="infoModalLeft">
+          <p class="modalTop">Movie Info</p>
+          <h2 class="modalTitle"></h2>
+          <p class="modalCate"></p>
+
+          <p class="modalStory"></p>
+          <div class="modalInfo">
+            <div>
+              <p>개봉일(US)</p>
+              <p>예산</p>
+            </div>
+            <div>
+              <p class="modalInfoDate"></p>
+              <p class="modalInfoBudget"></p>
+            </div>
+            <div>
+              <p>국가</p>
+              <p>평점</p>
+            </div>
+            <div>
+              <p class="modalInfoNation"></p>
+              <p class="modalInfoPoint"></p>
+            </div>
+          </div>
+        </div>
+        <div class="infoModalRight">
+          <div class="modalPhoto"></div>
+        </div>
+      </div>
+      <div class="modalSentence">
+        <h3>한줄평</h3>
+        <p>너무너무너무 재밌어요~~</p>
+        <input
+          class="registerInput"
+          type="text"
+          placeholder="한줄평을 입력해주세요"
+        />
+        <button class="register">등록</button>
+      </div>
+    </div>
+    <div id="infoModalBg"></div>
+    <div class="wrapper">
+      <div id="topButton">
+        <a href="#">
+          <img src="img/Layer 2.png" />
+          <div id="topButtonText"></div>
+        </a>
+      </div>
+      <header>
+        <h1 class="logo">CINE<span>6</span>IX</h1>
+        <nav class="globalNav">
+          <ul class="navItems">
+            <li class="navItem"><a href="#sec01">영화검색</a></li>
+            <li class="navItem"><a href="#sec02">최신영화</a></li>
+            <li class="navItem"><a href="#sec03">카테고리별 영화</a></li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <section id="sec01">
+          <h2>어떤 영화를 찾으시나요?</h2>
+          <div class="searchBar">
+            <div class="inputWrapper">
+              <input type="text" class="s1Input" required />
+              <label>영화 제목을 입력해주세요.</label>
+            </div>
+            <button class="s1SearchButton">검색</button>
+          </div>
+          <ul class="s1movieList">
+            <li class="s1_line on">
+              <ul class="s1movieListLine"></ul>
+            </li>
+            <li class="s1_line on">
+              <ul class="s1movieListLine"></ul>
+            </li>
+            <li class="s1_line on">
+              <ul class="s1movieListLine"></ul>
+            </li>
+            <li class="s1_line">
+              <ul class="s1movieListLine"></ul>
+            </li>
+            <li class="s1_line">
+              <ul class="s1movieListLine"></ul>
+            </li>
+          </ul>
+          <div class="s1MoreItem">더보기</div>
+          <div class="s1pagination"></div>
+        </section>
+        <section id="sec02">
+          <h2>최신영화를 모아봤어요!</h2>
+          <div class="slideWrap">
+            <div class="slideSection">
+              <div class="slideItem01 slideItem">
+                <div class="slideItem01Cover"></div>
+                <div class="s2mvInfo">
+                  <div class="svInfoBtn">
+                    <button class="svInfoLeft">
+                      <i class="fa-solid fa-arrow-left-long"></i>
+                    </button>
+                    <button class="svInfoRight">
+                      <i class="fa-solid fa-arrow-right-long"></i>
+                    </button>
+                  </div>
+                  <div class="s2mvInfoText"></div>
+                  <div class="s2dots">
+                    <span class="on"></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="slideItem02 slideItem"></div>
+              <div class="slideItem03 slideItem"></div>
+              <div class="slideItem04 slideItem"></div>
+              <div class="slideItem05 slideItem"></div>
+              <div class="slideItem06 slideItem"></div>
+            </div>
+          </div>
+        </section>
+        <section id="sec03">
+          <div class="sec03top">
+            <h2>카테고리별로 영화를 추천드릴게요.</h2>
+            <div class="cateMenu">
+              <ul>
+                <li class="s3cateItem on" id="12">모험</li>
+                <li class="s3cateItem" id="28">액션</li>
+                <li class="s3cateItem" id="18">드라마</li>
+                <li class="s3cateItem" id="53">스릴러</li>
+                <li class="s3cateItem" id="35">코미디</li>
+              </ul>
+            </div>
+          </div>
+          <ul class="s3movieList">
+            <li class="s3_line on">
+              <ul class="s3movieListLine"></ul>
+            </li>
+            <li class="s3_line on">
+              <ul class="s3movieListLine"></ul>
+            </li>
+            <li class="s3_line">
+              <ul class="s3movieListLine"></ul>
+            </li>
+            <li class="s3_line">
+              <ul class="s3movieListLine"></ul>
+            </li>
+          </ul>
+          <div class="s3MoreItem">더보기</div>
+          <div class="s3pagination"></div>
+        </section>
+      </main>
+      <footer></footer>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
