@@ -1058,4 +1058,150 @@ footer {
   .mvNameShorts3 {
     width: 90%;
   }
+
+  #infoModal {
+    width: 100%;
+    height: 100vh;
+  }
+
+  #infoModal.on {
+    width: 100%;
+    height: 100vh;
+  }
+
+  .infoModalTop {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .infoModalLeft,
+  .infoModalRight {
+    width: 100%;
+  }
+
+  .modalTop {
+    color: #ffba4c;
+    font-size: 12px;
+    font-weight: 200;
+  }
+
+  .modalTitle {
+    color: white;
+    font-size: 3rem;
+    font-weight: 800;
+    padding: 50px 0 10px 0;
+  }
+
+  .modalCate {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.747);
+    padding-bottom: 30px;
+    font-weight: 100;
+  }
+
+  .modalStory {
+    font-weight: 100;
+    font-size: 14px;
+    line-height: 20px;
+    color: rgba(255, 255, 255, 0.603);
+  }
+
+  .modalPhoto {
+    width: 100%;
+    height: 250px;
+    background: url("b5296483897f715a1d30477d02a76fee.jpg");
+    background-position: center;
+    background-size: cover;
+    margin: 0 auto;
+    border-radius: 20px;
+  }
+
+  .modalInfo {
+    font-weight: 100;
+    font-size: 14px;
+    height: 100px;
+    display: flex;
+    gap: 2rem;
+    padding: 2rem 0;
+  }
+
+  .modalInfo > div:nth-of-type(1) > p {
+    color: rgba(255, 255, 255, 0.664);
+    padding-bottom: 10px;
+  }
+
+  .modalInfo > div:nth-of-type(2) > p {
+    color: rgba(255, 255, 255, 0.404);
+    padding-bottom: 10px;
+  }
+
+  .modalInfo > div:nth-of-type(3) > p {
+    padding-left: 2rem;
+    color: rgba(255, 255, 255, 0.664);
+    padding-bottom: 10px;
+  }
+
+  .modalInfo > div:nth-of-type(4) > p {
+    color: rgba(255, 255, 255, 0.404);
+    padding-bottom: 10px;
+  }
+
+  .modalSentence {
+    width: 100%;
+    height: 200px;
+  }
+
+  .modalSentence > h3 {
+    color: #ffba4c;
+    font-weight: 200;
+    padding: 2rem 0;
+  }
+
+  .modalSentence > p {
+    color: rgba(255, 255, 255, 0.685);
+    font-weight: 200;
+    font-size: 14px;
+    padding: 1rem 0;
+  }
+
+  .modalSentence > input {
+    margin-top: 20px;
+    width: 70%;
+    background-color: rgba(0, 0, 0, 0.349);
+    outline: none;
+    border: 1px solid rgba(255, 255, 255, 0.137);
+    border-radius: 10px;
+    padding: 1rem;
+  }
+
+  .modalSentence > button {
+    width: 50px;
+    height: 50px;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0.349);
+    border: 1px solid #ffba4c;
+    border-radius: 10px;
+    transition: 0.2s;
+    margin-left: 1rem;
+  }
+
+  .modalSentence > button:hover {
+    background-color: #ffba4c;
+    color: black;
+    cursor: pointer;
+  }
+
+  #closeModal {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    opacity: 0.1;
+    transition: 0.2s;
+  }
+
+  #closeModal:hover {
+    opacity: 0.7;
+    cursor: pointer;
+  }
 }
