@@ -233,7 +233,11 @@ const BringModal = (dataTMDB, e) => {
     $modalPhoto.style.cssText = `background-image:url("https://image.tmdb.org/t/p/w400/${dataDetail.backdrop_path}")`;
     $modalCate.innerText = modalCatePart;
     $modalInfoDate.innerText = dataDetail.release_date;
-    $modalInfoBudget.innerText = `${dataDetail.budget} USD`;
+    if (dataDetail.budget !== 0) {
+      $modalInfoBudget.innerText = `${dataDetail.budget} USD`;
+    } else {
+      $modalInfoBudget.innerText = "정보없음";
+    }
     $modalInfoNation.innerText = dataDetail.origin_country[0];
     $modalInfoPoint.innerText = targetObject.vote_average;
 
@@ -415,7 +419,11 @@ $slideItem01Cover.addEventListener("click", () => {
     $modalPhoto.style.cssText = `background-image:url("https://image.tmdb.org/t/p/w400/${dataDetail.backdrop_path}")`;
     $modalCate.innerText = modalCatePart;
     $modalInfoDate.innerText = dataDetail.release_date;
-    $modalInfoBudget.innerText = `${dataDetail.budget} USD`;
+    if (dataDetail.budget !== 0) {
+      $modalInfoBudget.innerText = `${dataDetail.budget} USD`;
+    } else {
+      $modalInfoBudget.innerText = "정보없음";
+    }
     $modalInfoNation.innerText = dataDetail.origin_country[0];
     $modalInfoPoint.innerText = dataDetail.vote_average;
 
@@ -452,7 +460,7 @@ const fetchMovieS3 = async () => {
       let mvDate = s3dataTMDB[movieNum].release_date.slice(0, 4);
 
       if (s3dataTMDB[movieNum].poster_path === null) {
-        posterPath = `b5296483897f715a1d30477d02a76fee.jpg`;
+        posterPath = `img/noimage.png`;
       }
       const $s3newMv = document.createElement("li");
       $s3newMv.innerHTML = `
