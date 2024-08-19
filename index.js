@@ -427,6 +427,8 @@ $slideItem01Cover.addEventListener("click", () => {
     $modalInfoNation.innerText = dataDetail.origin_country[0];
     $modalInfoPoint.innerText = dataDetail.vote_average;
 
+    loadStorage();
+
     //모달class on추가
     $infoModal.classList.add("on");
     $infoModalBg.classList.add("on");
