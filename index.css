@@ -12,6 +12,10 @@ body {
   overflow-x: hidden;
 }
 
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
 .wrapper {
   width: 100vw;
   background-color: black;
@@ -927,8 +931,37 @@ main {
 }
 
 footer {
-  height: 100px;
+  height: 50px;
   background-color: #0c0c0c;
+}
+
+.footerFlex {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 75%;
+  margin: 0 auto;
+}
+
+.footerFlex > p:nth-of-type(2) {
+  color: #ffba4c;
+  font-weight: 800;
+  font-size: 2rem;
+}
+
+.footerFlex > p:nth-of-type(2) > span {
+  color: white;
+}
+
+.footerFlex > p:nth-of-type(1) {
+  color: rgba(255, 255, 255, 0.205);
+  font-size: 0.8rem;
+}
+
+.footerFlex > p:nth-of-type(3) {
+  color: rgba(255, 255, 255, 0.205);
+  font-size: 0.8rem;
 }
 
 @media (max-width: 1000px) {
@@ -970,6 +1003,10 @@ footer {
 
   .mvTimeShort {
     display: none;
+  }
+
+  #sec02 > h2 {
+    text-align: center;
   }
 
   .slideItem {
@@ -1105,6 +1142,8 @@ footer {
     font-size: 14px;
     line-height: 20px;
     color: rgba(255, 255, 255, 0.603);
+    max-height: 160px;
+    overflow: hidden;
   }
 
   .modalPhoto {
