@@ -550,14 +550,21 @@ main {
   display: none;
 }
 
+.s1paginationWrapper {
+  width: 350px;
+  display: none;
+  margin: 0 auto;
+}
+
+.s1paginationWrapper.on {
+  display: flex;
+  justify-content: space-between;
+}
+
 .s1pagination {
   width: 200px;
   height: 30px;
   margin: 0 auto;
-  display: none;
-}
-
-.s1pagination.on {
   display: flex;
   justify-content: center;
   gap: 1rem;
@@ -590,21 +597,22 @@ main {
   border-radius: 30px;
 }
 
-/* .prev,
-.next {
-  padding: 0 2rem;
-  opacity: 0.2;
+.s1pagLeft,
+.s1pagRight {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  outline: none;
+  width: 50px;
   font-weight: 200;
-  display: inline-block;
-  height: 30px;
-  line-height: 30px;
-  text-align: center;
+  background-color: #000000;
+  border-radius: 50px;
+  opacity: 0.5;
 }
 
-.prev.on,
-.next.on {
-  opacity: 0.7;
-} */
+.s1pagLeft:hover,
+.s1pagRight:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
 
 #sec02 {
   padding-top: 180px;
@@ -890,14 +898,21 @@ main {
   display: none;
 }
 
+.s3paginationWrapper {
+  width: 350px;
+  display: none;
+  margin: 0 auto;
+}
+
+.s3paginationWrapper.on {
+  display: flex;
+  justify-content: space-between;
+}
+
 .s3pagination {
   width: 200px;
   height: 30px;
   margin: 0 auto;
-  display: none;
-}
-
-.s3pagination.on {
   display: flex;
   justify-content: center;
   gap: 1rem;
@@ -928,6 +943,23 @@ main {
   width: 30px;
   height: 30px;
   border-radius: 30px;
+}
+
+.s3pagLeft,
+.s3pagRight {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  outline: none;
+  width: 50px;
+  font-weight: 200;
+  background-color: #000000;
+  border-radius: 50px;
+  opacity: 0.5;
+}
+
+.s3pagLeft:hover,
+.s3pagRight:hover {
+  opacity: 0.8;
+  cursor: pointer;
 }
 
 footer {
