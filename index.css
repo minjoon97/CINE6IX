@@ -295,7 +295,7 @@ header {
 
 .logo {
   margin: 0 auto;
-  width: 500px;
+  width: 100%;
   text-align: center;
   color: #ffba4c;
   font-size: 10rem;
@@ -527,7 +527,7 @@ main {
 }
 
 .s1MoreItem {
-  width: 400px;
+  width: 20%;
   height: 50px;
   border: 1px solid #ffba4c5e;
   border-radius: 10px;
@@ -867,7 +867,7 @@ main {
 }
 
 .s3MoreItem {
-  width: 400px;
+  width: 20%;
   height: 50px;
   border: 1px solid #ffba4c5e;
   border-radius: 10px;
@@ -1097,7 +1097,7 @@ footer {
   }
 
   #infoModal {
-    width: 100%;
+    width: 80%;
     height: 100vh;
   }
 
