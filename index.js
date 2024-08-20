@@ -1,3 +1,6 @@
+//API생성함수
+// import API_KEY from "config.js";
+
 //모달 엘리먼트
 const $infoModal = document.getElementById("infoModal");
 const $infoModalBg = document.getElementById("infoModalBg");
@@ -18,6 +21,7 @@ const $s1_line4 = document.querySelector(".s1_line:nth-of-type(4)");
 const $s1_line5 = document.querySelector(".s1_line:nth-of-type(5)");
 const $s1MoreItem = document.querySelector(".s1MoreItem");
 const $s1pagination = document.querySelector(".s1pagination");
+const $s1paginationWrapper = document.querySelector(".s1paginationWrapper");
 
 //sec02 엘리먼트
 const $svInfoLeft = document.querySelector(".svInfoLeft");
@@ -32,12 +36,15 @@ const $s3pagination = document.querySelector(".s3pagination");
 const $s3line3 = document.querySelector(".s3_line:nth-of-type(3)");
 const $s3line4 = document.querySelector(".s3_line:nth-of-type(4)");
 let $s3movieListLine = document.querySelectorAll(".s3movieListLine");
+const $s3paginationWrapper = document.querySelector(".s3paginationWrapper");
 
 //전역변수
 let mvName = "";
 let posterPath = "";
 let s1page = 1;
 let s3page = 1;
+let s1LargePage = 0;
+let s3LargePage = 0;
 let s3genre = 12;
 let urlTypes1 = "discover/movie";
 let urlTMDB1 = `https://api.themoviedb.org/3/${urlTypes1}?api_key=9503cbadb5d04ce615df8189b0219b11&page=${s1page}&language=ko`;
@@ -64,13 +71,15 @@ let s2SlideCount = 0;
 //
 //sec01 검색
 const $s1SearchButton = document.querySelector(".s1SearchButton");
-$s1SearchButton.addEventListener("click", () => {
+const $s1Input = document.querySelector(".s1Input");
+const sec01Search = () => {
   ReturnBlankLine();
   $s1_line4.classList.remove("on");
   $s1_line5.classList.remove("on");
-  $s1pagination.classList.remove("on");
+  $s1paginationWrapper.classList.remove("on");
   $s1MoreItem.classList.remove("on");
   s1page = 1;
+  s1LargePage = 0;
   urlTypes1 = "search/movie";
   const $s1Input = document.querySelector(".s1Input");
   mvName = $s1Input.value;
@@ -81,6 +90,17 @@ $s1SearchButton.addEventListener("click", () => {
     line.innerHTML = ``;
   });
   fetchMovie();
+};
+
+$s1SearchButton.addEventListener("click", () => {
+  sec01Search();
+});
+
+$s1Input.addEventListener("keyup", (event) => {
+  if (event.key === "Enter") {
+    event.preventDefault(); // 기본 Enter 동작 방지 (예: 폼 제출)
+    sec01Search();
+  }
 });
 
 //
@@ -151,11 +171,15 @@ const ReturnBlankLine = () => {
 //s1pagination생성
 const s1paginationCreate = () => {
   $s1pagination.innerHTML = ``;
-  for (let i = 0; i < Math.min(5, Math.ceil(s1dataCount / 20)); i++) {
+  for (
+    let i = 0 + s1LargePage;
+    i < Math.min(5 + s1LargePage, Math.ceil(s1dataCount / 20));
+    i++
+  ) {
     const paginationItem = document.createElement("span");
     paginationItem.innerHTML = i + 1;
     paginationItem.classList.add("nums1");
-    if (i === 0) {
+    if (i === s1LargePage) {
       paginationItem.classList.add("on");
     }
     $s1pagination.appendChild(paginationItem);
@@ -166,8 +190,7 @@ const s1paginationCreate = () => {
 //s1pagination클릭
 $s1pagination.addEventListener("click", async (e) => {
   s1page = e.target.innerText;
-  console.log(s1page);
-  if (s1page.length > 1) {
+  if (s1page.length > 4) {
     return;
   }
   $s1movieListLine.forEach((line) => {
@@ -180,7 +203,35 @@ $s1pagination.addEventListener("click", async (e) => {
   $s1paginationItems.forEach((item) => {
     item.classList.remove("on");
   });
-  $s1paginationItems[s1page - 1].classList.add("on");
+  $s1paginationItems[s1page - 1 - s1LargePage].classList.add("on");
+});
+
+//
+//s1pagination그룹넘기기
+const $s1pagRight = document.querySelector(".s1pagRight");
+$s1pagRight.addEventListener("click", () => {
+  if (Math.ceil(s1dataCount / 20) <= s1LargePage + 5) {
+    return;
+  }
+  s1LargePage += 5;
+  s1page = s1LargePage + 1;
+  $s1movieListLine.forEach((line) => {
+    line.innerHTML = ``;
+  });
+  fetchMovie();
+});
+
+const $s1pagLeft = document.querySelector(".s1pagLeft");
+$s1pagLeft.addEventListener("click", () => {
+  if (s1LargePage === 0) {
+    return;
+  }
+  s1LargePage -= 5;
+  s1page = s1LargePage + 1;
+  $s1movieListLine.forEach((line) => {
+    line.innerHTML = ``;
+  });
+  fetchMovie();
 });
 
 //
@@ -188,7 +239,7 @@ $s1pagination.addEventListener("click", async (e) => {
 $s1MoreItem.addEventListener("click", () => {
   $s1_line4.classList.add("on");
   $s1_line5.classList.add("on");
-  $s1pagination.classList.add("on");
+  $s1paginationWrapper.classList.add("on");
   $s1MoreItem.classList.add("on");
   deleteBlankLine();
 });
@@ -424,9 +475,10 @@ $s3cateItem.forEach((item) => {
   item.addEventListener("click", (e) => {
     $s3line3.classList.remove("on");
     $s3line4.classList.remove("on");
-    $s3pagination.classList.remove("on");
+    $s3paginationWrapper.classList.remove("on");
     $s3MoreItem.classList.remove("on");
     s3page = 1;
+    s3LargePage = 0;
     s3genre = item.id;
     $s3cateItem.forEach((item) => {
       item.classList.remove("on");
@@ -443,11 +495,11 @@ $s3cateItem.forEach((item) => {
 //s3pagination생성
 const s3paginationCreate = () => {
   $s3pagination.innerHTML = ``;
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0 + s3LargePage; i < 5 + s3LargePage; i++) {
     const paginationItem = document.createElement("span");
     paginationItem.innerHTML = i + 1;
     paginationItem.classList.add("nums3");
-    if (i === 0) {
+    if (i === s3LargePage) {
       paginationItem.classList.add("on");
     }
     $s3pagination.appendChild(paginationItem);
@@ -458,7 +510,7 @@ const s3paginationCreate = () => {
 //s3pagination클릭
 $s3pagination.addEventListener("click", async (e) => {
   s3page = e.target.innerText;
-  if (s3page.length > 1) {
+  if (s3page.length > 4) {
     return;
   }
   $s3movieListLine.forEach((line) => {
@@ -470,8 +522,36 @@ $s3pagination.addEventListener("click", async (e) => {
   $s3paginationItems.forEach((item) => {
     item.classList.remove("on");
   });
-  $s3paginationItems[s3page - 1].classList.add("on");
+  $s3paginationItems[s3page - 1 - s3LargePage].classList.add("on");
   console.log($s3paginationItems[s3page - 1]);
+});
+
+//
+//s1pagination그룹넘기기
+const $s3pagRight = document.querySelector(".s3pagRight");
+$s3pagRight.addEventListener("click", () => {
+  if (Math.ceil(s3dataCount / 20) <= s3LargePage + 5) {
+    return;
+  }
+  s3LargePage += 5;
+  s3page = s3LargePage + 1;
+  $s3movieListLine.forEach((line) => {
+    line.innerHTML = ``;
+  });
+  fetchMovieS3();
+});
+
+const $s3pagLeft = document.querySelector(".s3pagLeft");
+$s3pagLeft.addEventListener("click", () => {
+  if (s3LargePage === 0) {
+    return;
+  }
+  s3LargePage -= 5;
+  s3page = s3LargePage + 1;
+  $s3movieListLine.forEach((line) => {
+    line.innerHTML = ``;
+  });
+  fetchMovieS3();
 });
 
 //
@@ -479,7 +559,7 @@ $s3pagination.addEventListener("click", async (e) => {
 $s3MoreItem.addEventListener("click", () => {
   $s3line3.classList.add("on");
   $s3line4.classList.add("on");
-  $s3pagination.classList.add("on");
+  $s3paginationWrapper.classList.add("on");
   $s3MoreItem.classList.add("on");
 });
 
