@@ -1,5 +1,6 @@
 //API생성함수
-// import API_KEY from "config.js";
+import config from "./config.js";
+const API_KEY = config.API_KEY;
 
 //모달 엘리먼트
 const $infoModal = document.getElementById("infoModal");
@@ -47,9 +48,9 @@ let s1LargePage = 0;
 let s3LargePage = 0;
 let s3genre = 12;
 let urlTypes1 = "discover/movie";
-let urlTMDB1 = `https://api.themoviedb.org/3/${urlTypes1}?api_key=9503cbadb5d04ce615df8189b0219b11&page=${s1page}&language=ko`;
-let urlTMDB2 = `https://api.themoviedb.org/3/movie/upcoming?api_key=9503cbadb5d04ce615df8189b0219b11&language=ko`;
-let urlTMDB3 = `https://api.themoviedb.org/3/discover/movie?api_key=9503cbadb5d04ce615df8189b0219b11&language=ko&sort_by=popularity.desc&with_genres=${s3genre}&page=${s3page}`;
+let urlTMDB1 = `https://api.themoviedb.org/3/${urlTypes1}?api_key=${API_KEY}&page=${s1page}&language=ko`;
+let urlTMDB2 = `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=ko`;
+let urlTMDB3 = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=ko&sort_by=popularity.desc&with_genres=${s3genre}&page=${s3page}`;
 
 //TMDB에서 가져온 검색된 영화의 리스트 (sec01)
 let s1dataTMDB = "";
@@ -83,7 +84,7 @@ const sec01Search = () => {
   urlTypes1 = "search/movie";
   const $s1Input = document.querySelector(".s1Input");
   mvName = $s1Input.value;
-  urlTMDB1 = `https://api.themoviedb.org/3/${urlTypes1}?api_key=9503cbadb5d04ce615df8189b0219b11&query=${mvName}&page=${s1page}&language=ko`;
+  urlTMDB1 = `https://api.themoviedb.org/3/${urlTypes1}?api_key=${API_KEY}&query=${mvName}&page=${s1page}&language=ko`;
   $s1Input.value = "";
   $s1movieListLine = document.querySelectorAll(".s1movieListLine");
   $s1movieListLine.forEach((line) => {
@@ -106,7 +107,7 @@ $s1Input.addEventListener("keyup", (event) => {
 //
 //sec01 리스트 불러오기
 const fetchMovie = async () => {
-  urlTMDB1 = `https://api.themoviedb.org/3/${urlTypes1}?api_key=9503cbadb5d04ce615df8189b0219b11&query=${mvName}&page=${s1page}&language=ko`;
+  urlTMDB1 = `https://api.themoviedb.org/3/${urlTypes1}?api_key=${API_KEY}&query=${mvName}&page=${s1page}&language=ko`;
   const resTM = await fetch(urlTMDB1);
   const fetchedResultTM = await resTM.json();
   s1dataCount = fetchedResultTM.total_results;
@@ -287,7 +288,7 @@ $s3movieListLine.forEach((list) => {
 const fetchSpec = async (detailSource) => {
   let mvID = detailSource.id;
   const resDetail = await fetch(
-    `https://api.themoviedb.org/3/movie/${mvID}?api_key=9503cbadb5d04ce615df8189b0219b11&language=ko`
+    `https://api.themoviedb.org/3/movie/${mvID}?api_key=${API_KEY}&language=ko`
   );
   const fetchedResultDetail = await resDetail.json();
   dataDetail = fetchedResultDetail;
@@ -430,7 +431,7 @@ const fadeIn = () => {
 //
 //sec03 리스트 불러오기 (리펙토링 시, dataCount랑 dataTMBD 매개변수로 빼서 콜백으로 빼기 가능)
 const fetchMovieS3 = async () => {
-  let urlTMDB3 = `https://api.themoviedb.org/3/discover/movie?api_key=9503cbadb5d04ce615df8189b0219b11&language=ko&sort_by=popularity.desc&with_genres=${s3genre}&page=${s3page}`;
+  let urlTMDB3 = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=ko&sort_by=popularity.desc&with_genres=${s3genre}&page=${s3page}`;
   const resTM = await fetch(urlTMDB3);
   const fetchedResultTM = await resTM.json();
   s3dataCount = fetchedResultTM.total_results;
