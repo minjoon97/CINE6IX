@@ -6,5 +6,6 @@
 
 ### 작업환경
 Vanilla Javascript <br>
+fetch API <br>
 Local Storage <br>
 Open API
